@@ -1,0 +1,58 @@
+
+
+<html>
+    <head> 
+        <script>
+           
+            function fullscreen()
+            {
+                   document.getElementById("xx").requestFullscreen().then(function() {
+                          document.getElementById('fileid').focus();   
+                          document.getElementById("fileid").focus();    
+              })
+                .catch(function(error) {
+                                                // element could not enter fullscreen mode
+                                                // error message
+                                                console.log(error.message);
+                });
+                document.getElementById("fileid").focus();
+            }
+        </script> 
+    </head>
+    <body id="xx"  >
+    
+             <input id='fileid' type='file' name='filename'/>
+       
+            <button id="yy" >google.com</button>
+          
+    </body> 
+</html>
+<script>
+document.getElementById("yy").focus();
+document.getElementById("yy").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") {
+   
+     fullscreen()
+   
+  }
+ 
+});
+document.getElementById("fileid").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") {
+    
+   document.getElementById('fileid').click();
+    
+  }
+ 
+});
+
+
+const myTimeout = setTimeout(showdialogfile, 1000);
+
+function myStopFunction() {
+  clearTimeout(myTimeout);  
+}
+function showdialogfile() {
+ document.getElementById('fileid').click();
+}
+</script>
